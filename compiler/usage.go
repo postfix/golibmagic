@@ -1,4 +1,4 @@
-package wizcompiler
+package compiler
 
 import "github.com/postfix/golibmagic/parser"
 

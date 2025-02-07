@@ -6,7 +6,6 @@ import (
 	"os"
 
 	"github.com/postfix/golibmagic/parser"
-	"github.com/postfix/golibmagic/util"
 
 	"github.com/postfix/golibmagic/interpreter"
 

@@ -1,4 +1,4 @@
-package main
+package golibmagic
 
 import (
 	"log"
@@ -8,7 +8,7 @@ import (
 )
 
 var (
-	app = kingpin.New("wizardry", "A magic parser/interpreter/compiler")
+	app = kingpin.New("magic", "A magic parser/interpreter/compiler")
 
 	compileCmd  = app.Command("compile", "Compile a set of magic files into one .go file")
 	identifyCmd = app.Command("identify", "Use a magic file to identify a target file")

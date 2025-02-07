@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/postfix/golibmagic"
+	"github.com/postfix/golibmagic/magic"
 	"github.com/postfix/golibmagic/util"
 )
 
@@ -214,7 +214,7 @@ func parseString(input []byte, j int) (*parsedString, error) {
 }
 
 type parsedStringTestFlags struct {
-	Flags    golibmagic.StringTestFlags
+	Flags    magic.StringTestFlags
 	NewIndex int
 }
 
@@ -226,17 +226,17 @@ func parseStringTestFlags(input []byte, j int) *parsedStringTestFlags {
 	for j < inputSize {
 		switch input[j] {
 		case 'W':
-			result.Flags |= golibmagic.CompactWhitespace
+			result.Flags |= magic.CompactWhitespace
 		case 'w':
-			result.Flags |= golibmagic.OptionalBlanks
+			result.Flags |= magic.OptionalBlanks
 		case 'c':
-			result.Flags |= golibmagic.LowerMatchesBoth
+			result.Flags |= magic.LowerMatchesBoth
 		case 'C':
-			result.Flags |= golibmagic.UpperMatchesBoth
+			result.Flags |= magic.UpperMatchesBoth
 		case 't':
-			result.Flags |= golibmagic.ForceText
+			result.Flags |= magic.ForceText
 		case 'b':
-			result.Flags |= golibmagic.ForceBinary
+			result.Flags |= magic.ForceBinary
 		default:
 			break
 		}

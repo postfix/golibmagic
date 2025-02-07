@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/pkg/errors"
+	"github.com/postfix/golibmagic/compiler"
 	"github.com/postfix/golibmagic/parser"
 )
 

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/postfix/golibmagic"
+	"github.com/postfix/golibmagic/magic"
 	"github.com/postfix/golibmagic/parser"
 	"github.com/postfix/golibmagic/util"
 )
@@ -203,7 +203,7 @@ func (ctx *InterpretContext) identifyInternal(sr *util.SliceReader, pageOffset i
 		case parser.KindFamilyString:
 			sk, _ := rule.Kind.Data.(*parser.StringKind)
 
-			matchLen := golibmagic.StringTest(sr, lookupOffset, string(sk.Value), sk.Flags)
+			matchLen := magic.StringTest(sr, lookupOffset, string(sk.Value), sk.Flags)
 			success = matchLen >= 0
 
 			if sk.Negate {
@@ -217,7 +217,7 @@ func (ctx *InterpretContext) identifyInternal(sr *util.SliceReader, pageOffset i
 		case parser.KindFamilySearch:
 			sk, _ := rule.Kind.Data.(*parser.SearchKind)
 
-			matchPos := golibmagic.SearchTest(sr, lookupOffset, sk.MaxLen, string(sk.Value))
+			matchPos := magic.SearchTest(sr, lookupOffset, sk.MaxLen, string(sk.Value))
 			success = matchPos >= 0
 
 			if success {

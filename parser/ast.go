@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/postfix/golibmagic"
+	"github.com/postfix/golibmagic/magic"
 )
 
 // Spellbook contains a set of rules - at least one "" page, potentially others
@@ -292,7 +292,7 @@ const (
 type StringKind struct {
 	Value  []byte
 	Negate bool
-	Flags  golibmagic.StringTestFlags
+	Flags  magic.StringTestFlags
 }
 
 // SearchKind describes how to look for a fixed pattern
