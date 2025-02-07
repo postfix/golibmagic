@@ -1,11 +1,10 @@
-package main
+package golibmagic
 
 import (
 	"fmt"
 
-	"github.com/itchio/wizardry/wizardry/wizcompiler"
-	"github.com/itchio/wizardry/wizardry/wizparser"
 	"github.com/pkg/errors"
+	"github.com/postfix/golibmagic/parser"
 )
 
 func doCompile() error {
@@ -17,7 +16,7 @@ func doCompile() error {
 		fmt.Println(fmt.Sprintf(format, args...))
 	}
 
-	pctx := &wizparser.ParseContext{
+	pctx := &parser.ParseContext{
 		Logf: NoLogf,
 	}
 
@@ -25,13 +24,13 @@ func doCompile() error {
 		pctx.Logf = Logf
 	}
 
-	book := make(wizparser.Spellbook)
+	book := make(parser.Spellbook)
 	err := pctx.ParseAll(magdir, book)
 	if err != nil {
 		return errors.WithStack(err)
 	}
 
-	err = wizcompiler.Compile(book, *compileArgs.output, *compileArgs.chatty, *compileArgs.emitComments, *compileArgs.pkg)
+	err = compiler.Compile(book, *compileArgs.output, *compileArgs.chatty, *compileArgs.emitComments, *compileArgs.pkg)
 	if err != nil {
 		return errors.WithStack(err)
 	}

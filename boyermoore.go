@@ -2,13 +2,13 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-package wizardry
+package golibmagic
 
 import (
 	"log"
 	"strings"
 
-	"github.com/itchio/wizardry/wizardry/wizutil"
+	"github.com/postfix/golibmagic/util"
 )
 
 // StringFinder efficiently finds strings in a source text. It's implemented
@@ -107,10 +107,10 @@ func longestCommonSuffix(a, b string) (i int) {
 
 // next returns the index in text of the first occurrence of the pattern. If
 // the pattern is not found, it returns -1.
-func (f *StringFinder) next(sr *wizutil.SliceReader) int64 {
+func (f *StringFinder) next(sr *util.SliceReader) int64 {
 	i := int64(len(f.pattern) - 1)
 
-	bv := &wizutil.ByteView{
+	bv := &util.ByteView{
 		Input:    sr,
 		LookBack: int64(len(f.pattern)),
 	}

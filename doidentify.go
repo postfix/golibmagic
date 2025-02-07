@@ -1,13 +1,13 @@
-package main
+package golibmagic
 
 import (
 	"fmt"
 	"os"
 
-	"github.com/itchio/wizardry/wizardry/wizinterpreter"
-	"github.com/itchio/wizardry/wizardry/wizparser"
-	"github.com/itchio/wizardry/wizardry/wizutil"
 	"github.com/pkg/errors"
+	"github.com/postfix/golibmagic/interpreter"
+	"github.com/postfix/golibmagic/parser"
+	"github.com/postfix/golibmagic/util"
 )
 
 func doIdentify() error {
@@ -19,7 +19,7 @@ func doIdentify() error {
 		fmt.Println(fmt.Sprintf(format, args...))
 	}
 
-	pctx := &wizparser.ParseContext{
+	pctx := &parser.ParseContext{
 		Logf: NoLogf,
 	}
 
@@ -27,7 +27,7 @@ func doIdentify() error {
 		pctx.Logf = Logf
 	}
 
-	book := make(wizparser.Spellbook)
+	book := make(parser.Spellbook)
 	err := pctx.ParseAll(magdir, book)
 	if err != nil {
 		return errors.WithStack(err)
@@ -43,7 +43,7 @@ func doIdentify() error {
 
 	stat, _ := targetReader.Stat()
 
-	ictx := &wizinterpreter.InterpretContext{
+	ictx := &interpreter.InterpretContext{
 		Logf: NoLogf,
 		Book: book,
 	}
@@ -52,14 +52,14 @@ func doIdentify() error {
 		ictx.Logf = Logf
 	}
 
-	sr := wizutil.NewSliceReader(targetReader, 0, stat.Size())
+	sr := util.NewSliceReader(targetReader, 0, stat.Size())
 
 	result, err := ictx.Identify(sr)
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Printf("%s: %s\n", target, wizutil.MergeStrings(result))
+	fmt.Printf("%s: %s\n", target, util.MergeStrings(result))
 
 	return nil
 }

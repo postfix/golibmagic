@@ -5,11 +5,12 @@ import (
 	"log"
 	"os"
 
-	"github.com/itchio/wizardry/wizardry/wizparser"
+	"github.com/postfix/golibmagic/parser"
+	"github.com/postfix/golibmagic/util"
 
-	"github.com/itchio/wizardry/wizardry/wizinterpreter"
+	"github.com/postfix/golibmagic/interpreter"
 
-	"github.com/itchio/wizardry/wizardry/wizutil"
+	"github.com/postfix/golibmagic/util"
 )
 
 func main() {
@@ -30,10 +31,10 @@ func main() {
 		panic(err)
 	}
 
-	sr := wizutil.NewSliceReader(r, 0, stats.Size())
+	sr := util.NewSliceReader(r, 0, stats.Size())
 
-	book := make(wizparser.Spellbook)
-	pc := &wizparser.ParseContext{
+	book := make(parser.Spellbook)
+	pc := &parser.ParseContext{
 		Logf: log.Printf,
 	}
 	err = pc.ParseAll("Magdir", book)
@@ -41,7 +42,7 @@ func main() {
 		panic(err)
 	}
 
-	ic := &wizinterpreter.InterpretContext{
+	ic := &interpreter.InterpretContext{
 		Logf: log.Printf,
 		Book: book,
 	}
@@ -50,5 +51,5 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("%s: %s\n", target, wizutil.MergeStrings(res))
+	fmt.Printf("%s: %s\n", target, util.MergeStrings(res))
 }
