@@ -25,12 +25,12 @@ The original `itchio/wizardry` repository has been unmaintained for several year
 ## Installation
 
 ```bash
-go get [github.com/postfix/golibmagic](https://github.com/postfix/golibmagic)
+go get [github.com/postfix/golibmagic]
 ```
 
 ## Usage
 
-```Go 
+```go 
 package main
 
 import (
