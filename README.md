@@ -2,6 +2,9 @@
 
 A pure Go implementation of the libmagic library, forked from [itchio/wizardry](https://github.com/itchio/wizardry).  This fork addresses long-standing maintenance issues and bugs in the original project.
 
+# UNDER DEVLEOPMENT!!! Don not use !!! 
+
+
 ## About
 
 `golibmagic` provides file type detection based on magic numbers. It's a port of the functionality found in the widely-used `libmagic` C library, but implemented natively in Go, eliminating the need for cgo dependencies. This makes it easier to cross-compile and deploy, and generally more Go-friendly.
